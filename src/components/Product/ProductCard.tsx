@@ -5,6 +5,7 @@ import { useAppSelector } from '../../app/hooks';
 import { selectItemQuantityByProductVariant } from '../../features/bundle/bundleSelectors';
 import { makeSelectedProductKey } from '../../utils/helpers';
 import { formatCurrency } from '../../utils/price';
+import { getVariantImage } from '../../utils/variantImages';
 import ProductVariantSelector from './ProductVariantSelector';
 import QuantityStepper from '../common/QuantityStepper/QuantityStepper';
 
@@ -28,6 +29,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     selectedVariant.comparePrice || product.defaultComparePrice || 0;
 
   const key = makeSelectedProductKey(product.id, selectedVariant.id);
+  const displayImage = getVariantImage(product.id, selectedVariant.name, product.image);
 
   const handleAdd = () => {
     handleAddProduct({
@@ -39,7 +41,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       price: currentPrice,
       comparePrice: currentComparePrice,
       quantity: 1,
-      image: product.image,
+      image: displayImage,
     });
   };
 
@@ -79,7 +81,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         {/* Product Image */}
         <div className="w-[80px] shrink-0 flex items-center justify-center">
           <img
-            src={product.image}
+            src={displayImage}
             alt={product.name}
             className="w-full h-auto object-contain"
             style={{
@@ -105,6 +107,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
           {/* Variant Selector */}
           <ProductVariantSelector
+            productId={product.id}
             variants={product.variants}
             selectedVariantId={selectedVariant.id}
             onSelectVariant={setSelectedVariant}
