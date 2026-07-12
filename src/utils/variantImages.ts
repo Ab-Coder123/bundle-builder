@@ -13,7 +13,7 @@ export function getVariantImage(productId: string, variantName: string, fallback
     if (nameLower === 'white') return '/images/variants/wyze-battery-cam-pro-white.png';
     if (nameLower === 'black') return '/images/variants/wyze-battery-cam-pro-black.png';
   }
-  if (productId === 'wyze-floodlight-v2') {
+  if (productId === 'wyze-cam-floodlight-v2' || productId === 'wyze-floodlight-v2') {
     if (nameLower === 'white') return '/images/variants/wyze-floodlight-v2-white.png';
     if (nameLower === 'black') return '/images/variants/wyze-floodlight-v2-black.png';
   }
