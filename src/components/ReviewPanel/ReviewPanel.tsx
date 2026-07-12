@@ -13,7 +13,7 @@ export const ReviewPanel: React.FC = () => {
     cameras: 'CAMERAS',
     sensors: 'SENSORS',
     accessories: 'ACCESSORIES',
-    plan: 'HOME MONITORING PLAN',
+    plan: 'PLAN',
   };
 
   const safeSelectedProducts = selectedProducts || [];
